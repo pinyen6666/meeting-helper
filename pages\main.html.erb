@@ -1,0 +1,44 @@
+<div class="header">
+  <div class="container">
+    <ul>
+      <li> About </li>
+      <li> Features </li>
+      <li> Contact </li>
+      <li style = "text-decoration: none"><% if current_customer %>
+        <%= link_to "Settings", edit_customer_path(current_customer) %>
+            <%end%></li>
+
+      <li id = "logout" style = "text-decoration: none"><% if current_customer %>
+            <%= link_to "Log Out", logout_path, method: "delete" %>
+        <% end %></li>
+
+
+    </ul>
+  </div>
+
+
+</div>
+
+<div class="jumbotron">
+
+  <div class="container">
+    <div class="main2">
+
+      <a class="btn-main" href="/compose">Create a Meeting</a>
+
+    </div>
+  </div>
+</div>
+
+<div class = "calendarContainer">
+  <%= render partial: '/calendars/show', locals: {} %>
+
+</div>
+
+
+
+<div class="footer">
+  <div class="container">
+    <p>&copy; WhenWhere 2015</p>
+  </div>
+</div>
