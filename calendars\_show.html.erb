@@ -1,0 +1,449 @@
+<div class = "calendarContainer">
+
+  <table class= "weeklyCalendar">
+    <tr>
+      <td class = "blankTopLeft">
+      </td>
+      <td class = "daytd" width=75 valign=top >
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Mon</span></i></p>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%= Date.today.beginning_of_week(:monday).day() %></span></i></p>
+      </td>
+      <td class = "daytd" width=75 valign=top>
+        <p class=MsoNormal ><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Tue</span></i></p>
+        <p class=MsoNormal ><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%=Date.today.beginning_of_week(:monday).day()+1%></span></i></p>
+      </td>
+      <td class = "daytd" width=75 valign=top>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Wed</span></i></p>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%= Date.today.beginning_of_week(:monday).day()+2 %></span></i></p>
+      </td>
+      <td class = "daytd" width=75 valign=top>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Thu</span></i></p>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%= Date.today.beginning_of_week(:monday).day()+3 %></span></i></p>
+      </td>
+      <td class = "daytd" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Fri</span></i></p>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%= Date.today.beginning_of_week(:monday).day()+4 %></span></i></p>
+      </td>
+      <td class = "daytd" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Sat</span></i></p>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%= Date.today.beginning_of_week(:monday).day()+5 %></span></i></p>
+      </td>
+      <td class= "daytd" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'>Sun</span></i></p>
+        <p class=MsoNormal><i><span style='font-size:13.0pt;font-family:"Calibri Light",sans-serif'><%= Date.today.beginning_of_week(:monday).day()+6 %></span></i></p>
+      </td>
+    </tr>
+    <tr class = "Monday" style='height:28.05pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>  9:00  </span></i></p>
+      </td>
+      <td id = "mon900" class ="freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+        <% if event.starts_at.monday? && event.starts_at.hour == 9 %>
+
+            <p class = "busy"><%= event.name %><%= link_to "delete", event, :data => {:confirm => "are you sure?"}, :method => "delete" %></p>
+            <% end %>
+
+        <% end %>
+
+      </td>
+      <td id = "tue900" class ="freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+        <% if event.starts_at.tuesday? && event.starts_at.hour == 9 %>
+
+            <p><%= event.name %></p>
+        <% end %>
+
+        <% end %>
+
+      </td>
+      <td id = "wed900" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.wednesday? && event.starts_at.hour == 9 %>
+
+                <p><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+      </td>
+      <td id = "thu900" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.thursday? && event.starts_at.hour == 9 %>
+
+                <p><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+
+      </td>
+      <td id = "fri900" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.friday? && event.starts_at.hour == 9 %>
+
+                <p><%= event.name %><%= link_to "delete", event, :data => {:confirm => "are you sure?"}, :method => "delete" %></p>
+            <% end %>
+
+        <% end %>
+
+
+      </td>
+      <td id = "sat900" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.saturday? && event.starts_at.hour == 9 %>
+
+                <p><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+
+      </td>
+      <td id = "sun900" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;
+          <% @events.each do |event|%>
+              <% if event.starts_at.sunday? && event.starts_at.hour == 9 %>
+
+                <%= event.name %></p>
+            <% end %>
+
+        <% end %>
+
+
+
+      </td>
+    </tr>
+    <tr style='height:27.75pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>10:00</span></i></p>
+      </td>
+      <td id = "mon1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.monday? && event.starts_at.hour == 10 %>
+
+                <p class = "busy"><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+      </td>
+      <td id = "tue1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.tuesday? && event.starts_at.hour == 10 %>
+
+                <p class = "busy"><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+      </td>
+      <td id = "wed1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.wednesday? && event.starts_at.hour == 10 %>
+
+                <p class = "busy"><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+      </td>
+      <td id = "thu1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.thursday? && event.starts_at.hour == 10 %>
+
+                <p class = "busy"><%= event.name %></p>
+            <% end %>
+
+        <% end %>
+      </td>
+      <td id = "fri1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+        <% @events.each do |event|%>
+            <% if event.starts_at.friday? && event.starts_at.hour == 10 %>
+
+                <p class = "busy"><%= event.name  %><%= link_to "delete", event, :data => {:confirm => "are you sure?"}, :method => "delete" %></p>
+
+            <% end %>
+
+        <% end %>
+      </td>
+      <td id = "sat1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sun1000" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:28.15pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>11:00</span></i></p>
+      </td>
+      <td id = "mon1100" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1100" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1100" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1100" class="freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1100" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sat1100" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id ="sun1100" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:27.1pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>12:00</span></i></p>
+      </td>
+      <td id = "mon1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sat1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sun1200" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:28.9pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>13:00</span></i></p>
+      </td>
+      <td id = "mon1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sat1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sun1300" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:27.2pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>14:00</span></i></p>
+      </td>
+      <td id = "mon1400" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1400" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1400" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1400" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1400" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id="sat1400" class="freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id="sun1400" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:28.3pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>15:00</span></i></p>
+      </td>
+      <td id = "mon1500" class="freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1500" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1500" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1500" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1500" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sat1500" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sun1500" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:34.4pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>16:00</span></i></p>
+      </td>
+      <td id = "mon1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sat1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sun1600" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+    <tr style='height:35.65pt'>
+      <td class = "timetd" width=75 valign=top>
+        <p class=MsoNormal align=right style='margin-bottom:0cm;margin-bottom:.0001pt;
+                text-align:right;line-height:normal'><i><span style='font-size:13.0pt;
+                font-family:"Calibri Light",sans-serif'>17:00</span></i></p>
+      </td>
+      <td id = "mon1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "tue1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "wed1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "thu1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "fri1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sat1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+      <td id = "sun1700" class = "freeslot" width=75 valign=top>
+        <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+                normal'>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</div>
