@@ -1,0 +1,73 @@
+<div class="header">
+  <div class="container">
+    <ul>
+      <li> About </li>
+      <li> Features </li>
+      <li> Contact </li>
+      <li id = "logout" style = "text-decoration: none"><% if current_customer %>
+            <%= link_to "Log Out", logout_path, method: "delete" %>
+        <% end %></li>
+
+
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+
+  <div class="container">
+    <div class="form">
+      <h1>Create A Meeting</h1>
+
+      <%= form_for(@event) do |f| %>
+
+          <%= f.text_field :name, :placeholder => "Title" %>
+          <!--< f.collection_select :location, Location.all, :id, :locName %> FOR WHEN LOCATIONS ARE A THING-->
+          <%= f.text_field :description, :placeholder => "Short Description" %>
+
+          <div>
+            <h2>Who's involved?</h2>
+            <%= f.collection_select :id,
+                                    Customer.where(business_id: current_customer.business_id),
+                                    :id,
+                                    :full_name,
+                                    { prompt: 'Select' },
+                                    { id: "colleageselect", onChange: "renderColCal(this)" } %>
+
+
+            <div id = colleaguecal>
+
+
+            </div>
+
+
+          </div>
+
+
+          <div>
+            <h2>Check out a day and see who's free</h2>
+            <%= f.select :day, Date::DAYNAMES.zip((0..6).to_a)  %>
+          </div>
+
+
+
+          <div>
+            <h2>when do you want it to start?</h2>
+            <%= f.datetime_select :starts_at, :placeholder => "when do you want it?"   %>
+          </div>
+
+
+
+          <div>
+            <h2>when do you want it to end?</h2>
+            <%= f.datetime_select :ends_at, :placeholder => "when should it end?"  %>
+          </div>
+
+
+          <%= f.submit "Create Meeting", class: "btn-submit" %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
