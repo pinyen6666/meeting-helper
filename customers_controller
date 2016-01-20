@@ -1,0 +1,58 @@
+class CustomersController < ApplicationController
+
+  def new
+
+    @customer = Customer.new
+    @businesses = Business.all
+    @calendar = Calendar.new
+
+  end
+
+  def create
+
+    @customer = Customer.create(customer_params)
+
+    @calendar = @customer.build_calendar
+    @customer.save!
+    session[:customer_id] = @customer.id
+
+    redirect_to '/'
+  rescue ActiveRecord::RecordInvalid => ex
+    render action: 'new', alert: ex.message
+  end
+
+  def index
+    @customers = Customer.all
+
+  end
+
+
+
+  def edit
+    @customer = Customer.find(params[:id])
+  end
+
+  def update
+    @customer = Customer.find(params[:id])
+    if @customer.update_attributes(customer_params)
+      redirect_to '/main'
+    else
+      render 'edit'
+    end
+  end
+
+
+  def search
+    @q = "%#{params[:query]}%"
+
+    @customers = Customer.where("first_name LIKE ? or last_name LIKE ? ",@q,@q)
+    render partial: "customers/search", locals: { customers: @customers}
+
+  end
+
+  private
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :business_no, :email, :password, :business_id)
+  end
+
+end
